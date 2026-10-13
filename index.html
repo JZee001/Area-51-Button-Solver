@@ -7,89 +7,96 @@
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: #f4f6f9;
-            color: #333;
+            background-color: #0d1117;
+            color: #c9d1d9;
             margin: 0;
-            padding: 20px;
+            padding: 30px;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
         .container {
-            max-width: 600px;
+            max-width: 900px;
             width: 100%;
-            background: white;
-            padding: 30px;
+            background: #161b22;
+            padding: 40px;
             border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+            border: 1px solid #30363d;
             text-align: center;
         }
         h1 {
-            color: #1f4e78;
+            color: #58a6ff;
             margin-bottom: 10px;
         }
         p.subtitle {
-            color: #666;
+            color: #8b949e;
             font-size: 14px;
+            margin-bottom: 35px;
+        }
+        /* Horizontal row of 8 buttons */
+        .buttons-row {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
             margin-bottom: 30px;
         }
-        .buttons-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 15px;
-            margin-bottom: 25px;
-        }
-        @media (max-width: 500px) {
-            .buttons-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
         .button-card {
-            background: #fafbfc;
-            border: 1px solid #e1e4e8;
+            background: #21262d;
+            border: 1px solid #30363d;
             border-radius: 8px;
-            padding: 15px;
+            padding: 12px 10px;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
         .button-label {
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 600;
-            color: #586069;
+            color: #8b949e;
             margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
         .puzzle-btn {
-            width: 55px;
-            height: 55px;
-            border-radius: 50%;
-            border: 2px solid rgba(0,0,0,0.1);
+            width: 85px;
+            height: 45px;
+            border-radius: 8px;
+            border: 2px solid rgba(255,255,255,0.15);
             cursor: pointer;
-            font-weight: bold;
-            font-size: 14px;
-            color: white;
-            transition: transform 0.1s ease, box-shadow 0.1s ease;
+            font-weight: 700;
+            font-size: 13px;
+            color: #ffffff;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.4);
+            transition: transform 0.1s ease, filter 0.1s ease;
             outline: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .puzzle-btn:active {
-            transform: scale(0.95);
+            transform: scale(0.96);
         }
-        /* Colors: Red (0), Yellow (1), Green (2) */
-        .color-0 { background-color: #d73a49; } /* Red */
-        .color-1 { background-color: #dbab09; } /* Yellow */
-        .color-2 { background-color: #28a745; } /* Green */
+        .puzzle-btn:hover {
+            filter: brightness(1.1);
+        }
+        /* Dark mode colors for states: Red (0), Yellow (1), Green (2) */
+        .color-0 { background-color: #da3633; } /* Red */
+        .color-1 { background-color: #bb8009; } /* Yellow */
+        .color-2 { background-color: #238636; } /* Green */
 
         .controls {
             display: flex;
-            gap: 10px;
+            gap: 12px;
             justify-content: center;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
         }
         .btn-action {
-            background-color: #1f4e78;
+            background-color: #238636;
             color: white;
             border: none;
-            padding: 10px 20px;
+            padding: 12px 24px;
             border-radius: 6px;
             font-size: 14px;
             font-weight: 600;
@@ -97,31 +104,50 @@
             transition: background 0.2s;
         }
         .btn-action:hover {
-            background-color: #153554;
+            background-color: #2ea043;
         }
         .btn-secondary {
-            background-color: #e1e4e8;
-            color: #333;
+            background-color: #21262d;
+            color: #c9d1d9;
+            border: 1px solid #30363d;
         }
         .btn-secondary:hover {
-            background-color: #c6cbd1;
+            background-color: #30363d;
         }
         .result-box {
-            background: #f1f8ff;
-            border: 1px solid #c8e1ff;
+            background: #0d1117;
+            border: 1px solid #30363d;
             border-radius: 8px;
             padding: 20px;
             text-align: left;
-            margin-top: 20px;
+            margin-top: 25px;
         }
         .result-box h3 {
             margin-top: 0;
-            color: #0366d6;
+            color: #58a6ff;
             font-size: 16px;
         }
         .parity-warning {
-            color: #d73a49;
+            color: #f85149;
             font-weight: 600;
+        }
+        /* Reference Image Section */
+        .reference-section {
+            margin-top: 35px;
+            border-top: 1px solid #30363d;
+            padding-top: 25px;
+            text-align: center;
+        }
+        .reference-section h4 {
+            color: #8b949e;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        .reference-img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            border: 1px solid #30363d;
         }
     </style>
 </head>
@@ -131,7 +157,8 @@
     <h1>8-Button Puzzle Solver</h1>
     <p class="subtitle">Click any button to cycle its color (Red &rarr; Yellow &rarr; Green). When your puzzle matches, click Solve!</p>
 
-    <div class="buttons-grid" id="buttonsGrid">
+    <!-- Single row of 8 buttons -->
+    <div class="buttons-row" id="buttonsGrid">
         <!-- Generated dynamically via JS -->
     </div>
 
@@ -143,6 +170,16 @@
     <div class="result-box" id="resultBox" style="display: none;">
         <h3 id="resultTitle">Solution</h3>
         <p id="resultText"></p>
+    </div>
+
+    <!-- Reference Image Section -->
+    <div class="reference-section">
+        <h4>Button Layout Reference</h4>
+        <!-- Replace 'puzzle_reference.png' with your actual image filename once uploaded -->
+        <img src="puzzle_reference.png" alt="Puzzle Reference Layout" class="reference-img" onerror="this.style.display='none'; document.getElementById('img-fallback').style.display='block';">
+        <p id="img-fallback" style="display:none; color: #8b949e; font-size: 13px; font-style: italic;">
+            (Tip: Upload an image named <code>puzzle_reference.png</code> into your repository to display your reference layout here.)
+        </p>
     </div>
 </div>
 
@@ -161,11 +198,11 @@
             
             const label = document.createElement("div");
             label.className = "button-label";
-            label.innerText = `Button ${i + 1}`;
+            label.innerText = `B${i + 1}`;
             
             const btn = document.createElement("button");
             btn.className = `puzzle-btn color-${val}`;
-            btn.innerText = colorNames[val].substring(0, 3);
+            btn.innerText = colorNames[val]; // Full word now fits!
             btn.title = `Click to cycle color (${colorNames[val]})`;
             btn.onclick = () => cycleColor(i);
             
@@ -190,13 +227,11 @@
     function solvePuzzle() {
         const target = [2, 2, 2, 2, 2, 2, 2, 2];
         
-        // Check if already solved
         if (arraysEqual(states, target)) {
             showResult("Already Solved!", "All buttons are already Green!");
             return;
         }
 
-        // BFS solver
         let queue = [{state: [...states], path: []}];
         let visited = new Set();
         visited.add(states.toString());
@@ -235,7 +270,7 @@
         resBox.style.display = "block";
 
         if (solution) {
-            showResult("Solution Found!", `Press buttons in this exact order:<br><br><strong>&rarr; Button ${solution.join(", Button ")}</strong><br><small style="color:#666">Total presses: ${solution.length}</small>`);
+            showResult("Solution Found!", `Press buttons in this exact order:<br><br><strong>&rarr; Button ${solution.join(", Button ")}</strong><br><small style="color:#8b949e">Total presses: ${solution.length}</small>`);
         } else {
             showResult("Unsolvable Configuration", `<span class="parity-warning">No solution exists for this starting configuration.</span> Due to the mathematical rules of this puzzle, this combination is in an unreachable state space. Try changing one or two buttons to Green or Yellow!`);
         }
@@ -250,7 +285,6 @@
         document.getElementById("resultText").innerHTML = htmlContent;
     }
 
-    // Initial render
     render();
 </script>
 
