@@ -16,7 +16,7 @@
             align-items: center;
         }
         .container {
-            max-width: 900px;
+            max-width: 950px;
             width: 100%;
             background: #161b22;
             padding: 40px;
@@ -34,22 +34,25 @@
             font-size: 14px;
             margin-bottom: 35px;
         }
-        /* Horizontal row of 8 buttons */
+        /* Forces all 8 buttons to stay in a single row without wrapping */
         .buttons-row {
             display: flex;
             justify-content: center;
-            gap: 12px;
-            flex-wrap: wrap;
+            gap: 8px;
+            flex-wrap: nowrap;
             margin-bottom: 30px;
+            overflow-x: auto;
+            padding-bottom: 10px;
         }
         .button-card {
             background: #21262d;
             border: 1px solid #30363d;
             border-radius: 8px;
-            padding: 12px 10px;
+            padding: 10px 6px;
             display: flex;
             flex-direction: column;
             align-items: center;
+            min-width: 90px;
         }
         .button-label {
             font-size: 11px;
@@ -60,13 +63,13 @@
             letter-spacing: 0.5px;
         }
         .puzzle-btn {
-            width: 85px;
+            width: 82px;
             height: 45px;
             border-radius: 8px;
             border: 2px solid rgba(255,255,255,0.15);
             cursor: pointer;
             font-weight: 700;
-            font-size: 13px;
+            font-size: 12px;
             color: #ffffff;
             text-shadow: 0 1px 2px rgba(0,0,0,0.4);
             transition: transform 0.1s ease, filter 0.1s ease;
@@ -175,7 +178,7 @@
     <!-- Reference Image Section -->
     <div class="reference-section">
         <h4>Button Layout Reference</h4>
-        <!-- Replace 'puzzle_reference.png' with your actual image filename once uploaded -->
+        <!-- Upload your image to the repository and ensure filename matches below -->
         <img src="puzzle_reference.png" alt="Puzzle Reference Layout" class="reference-img" onerror="this.style.display='none'; document.getElementById('img-fallback').style.display='block';">
         <p id="img-fallback" style="display:none; color: #8b949e; font-size: 13px; font-style: italic;">
             (Tip: Upload an image named <code>puzzle_reference.png</code> into your repository to display your reference layout here.)
@@ -184,7 +187,6 @@
 </div>
 
 <script>
-    // 0 = Red, 1 = Yellow, 2 = Green
     let states = [0, 0, 0, 0, 0, 0, 0, 0];
     const colorNames = ["Red", "Yellow", "Green"];
 
@@ -202,7 +204,7 @@
             
             const btn = document.createElement("button");
             btn.className = `puzzle-btn color-${val}`;
-            btn.innerText = colorNames[val]; // Full word now fits!
+            btn.innerText = colorNames[val];
             btn.title = `Click to cycle color (${colorNames[val]})`;
             btn.onclick = () => cycleColor(i);
             
