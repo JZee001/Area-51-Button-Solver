@@ -69,9 +69,13 @@
             border: 2px solid rgba(255,255,255,0.15);
             cursor: pointer;
             font-weight: 700;
-            font-size: 12px;
+            font-size: 13px;
             color: #ffffff;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.4);
+            text-shadow: -1.5px -1.5px 0 #000, 
+                          1.5px -1.5px 0 #000, 
+                         -1.5px  1.5px 0 #000, 
+                          1.5px  1.5px 0 #000, 
+                          0      2px 4px rgba(0,0,0,0.9);
             transition: transform 0.1s ease, filter 0.1s ease;
             outline: none;
             display: flex;
@@ -85,9 +89,9 @@
             filter: brightness(1.1);
         }
         /* Dark mode colors for states: Red (0), Yellow (1), Green (2) */
-        .color-0 { background-color: #da3633; } /* Red */
-        .color-1 { background-color: #bb8009; } /* Yellow */
-        .color-2 { background-color: #238636; } /* Green */
+        .color-0 { background-color: #f8443a; } /* Red */
+        .color-1 { background-color: #e6e600; } /* Yellow */
+        .color-2 { background-color: #3fb950; } /* Green */
 
         .controls {
             display: flex;
